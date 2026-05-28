@@ -33,11 +33,21 @@ export type ConfigurableSchemas = {
 
 export const configurableSchemas: ConfigurableSchemas = {
   formSchema: [
+    // ── Identity ──────────────────────────────────────────────────────────
     {
       fieldName: "appName",
       type: "string",
       required: true,
-      label: "App Name",
+      label: "Bakery Name",
+      minLength: 1,
+      maxLength: 80,
+    },
+    {
+      fieldName: "tagline",
+      type: "string",
+      required: false,
+      label: "Tagline",
+      maxLength: 140,
     },
     {
       fieldName: "logoUrl",
@@ -45,31 +55,108 @@ export const configurableSchemas: ConfigurableSchemas = {
       required: true,
       label: "Logo URL",
     },
+    // ── Brand colors (consumed by ConfigurablesCSSBridge) ────────────────
     {
       fieldName: "brandColor",
       type: "object",
       required: true,
-      label: "Brand Color",
+      label: "Brand Colors",
       fields: [
         {
           fieldName: "primary",
           type: "color",
           required: true,
-          label: "Primary",
+          label: "Primary (Crust Gold)",
         },
         {
           fieldName: "secondary",
           type: "color",
           required: true,
-          label: "Secondary",
+          label: "Secondary (Toasted Caramel)",
         },
         {
           fieldName: "accent",
           type: "color",
           required: true,
-          label: "Accent",
+          label: "Accent (Butter Cream)",
         },
       ],
+    },
+    // ── Sold-today screen copy ───────────────────────────────────────────
+    {
+      fieldName: "soldTodayHeading",
+      type: "string",
+      required: false,
+      label: "Sold Today Heading",
+      maxLength: 60,
+    },
+    {
+      fieldName: "soldTodaySubheading",
+      type: "string",
+      required: false,
+      label: "Sold Today Subheading",
+      maxLength: 140,
+    },
+    // ── Owner insight copy ───────────────────────────────────────────────
+    {
+      fieldName: "insightHeading",
+      type: "string",
+      required: false,
+      label: "Insight Heading",
+      maxLength: 60,
+    },
+    {
+      fieldName: "insightSubheading",
+      type: "string",
+      required: false,
+      label: "Insight Subheading",
+      maxLength: 140,
+    },
+    // ── Auth screen copy ─────────────────────────────────────────────────
+    {
+      fieldName: "loginWelcome",
+      type: "string",
+      required: false,
+      label: "Login Welcome Text",
+      maxLength: 80,
+    },
+    // ── Feature flags ────────────────────────────────────────────────────
+    {
+      fieldName: "enableUndo",
+      type: "boolean",
+      required: false,
+      label: "Show 10s undo toast after each tap",
+    },
+    {
+      fieldName: "showBestsellerBadges",
+      type: "boolean",
+      required: false,
+      label: "Show bestseller crowns on top 3",
+    },
+    // ── Layout ───────────────────────────────────────────────────────────
+    {
+      fieldName: "gridColumns",
+      type: "number",
+      required: false,
+      label: "Pastry Grid Columns (tablet landscape)",
+      min: 2,
+      max: 5,
+    },
+    // ── Pastry catalog (seeded for first-run; editable per app) ──────────
+    {
+      fieldName: "defaultPastries",
+      type: "array",
+      required: false,
+      label: "Default Pastry Catalog (seed)",
+      item: {
+        type: "object",
+        required: true,
+        fields: [
+          { fieldName: "name", type: "string", required: true, label: "Pastry Name" },
+          { fieldName: "photoUrl", type: "url", required: true, label: "Photo URL" },
+          { fieldName: "emoji", type: "string", required: false, label: "Emoji Fallback" },
+        ],
+      },
     },
   ],
 };

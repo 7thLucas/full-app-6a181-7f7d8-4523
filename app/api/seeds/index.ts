@@ -102,6 +102,15 @@ export async function runSeeds(): Promise<void> {
       await seed.run();
     }
 
+    // ─── Manually-registered seeds from non-module feature folders ──────
+    try {
+      const { seedCrumb } = await import("~/crumb/crumb.seed");
+      logger.info("Running seedCrumb (pastry catalog defaults)");
+      await seedCrumb();
+    } catch (err) {
+      logger.error("Failed to run seedCrumb", err);
+    }
+
     logger.info("✅ All seed operations completed successfully");
   } catch (error) {
     logger.error("❌ Seed operations failed:", error);

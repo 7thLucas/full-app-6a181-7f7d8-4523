@@ -11,6 +11,7 @@ import stylesheet from "~/tailwind.css?url";
 import { useEffect } from "react";
 import { ThemeProvider } from "next-themes";
 import { ConfigurablesProvider, ConfigurablesCSSBridge } from "~/modules/configurables";
+import { AuthProvider } from "~/modules/authentication/use-authentication";
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { GlobalError } from "./error";
 
@@ -76,9 +77,11 @@ export default function App() {
         <RouteChangeReporter />
         <ConfigurablesProvider>
           <ConfigurablesCSSBridge />
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Outlet />
-          </ThemeProvider>
+          <AuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+              <Outlet />
+            </ThemeProvider>
+          </AuthProvider>
         </ConfigurablesProvider>
         <ScrollRestoration />
         <Scripts />

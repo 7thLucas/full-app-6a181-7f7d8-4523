@@ -47,4 +47,9 @@ export async function initializeModels(): Promise<void> {
     logger.info(`Initializing model from ${path.relative(process.cwd(), modelFile)}`);
     await import(pathToFileURL(modelFile).href);
   }
+
+  // ─── Manually-registered models from non-module feature folders ───────
+  logger.info("Initializing crumb models (pastry, sale)");
+  await import("~/crumb/pastry.model");
+  await import("~/crumb/sale.model");
 }

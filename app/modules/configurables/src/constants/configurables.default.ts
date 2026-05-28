@@ -12,35 +12,51 @@ export type TBrandColor = {
   accent: string;
 };
 
+export type TDefaultPastry = {
+  name: string;
+  photoUrl: string;
+  emoji?: string;
+};
+
 export type TDefaultConfigurableData = {
   appName: string;
+  tagline: string;
   logoUrl: string;
   brandColor: TBrandColor;
-  // Mirror new schema fields here. Example:
-  //   maxItemsPerPage?: number;
-  //   enableNotifications?: boolean;
-  //   featuredCategories?: string[];
+  soldTodayHeading: string;
+  soldTodaySubheading: string;
+  insightHeading: string;
+  insightSubheading: string;
+  loginWelcome: string;
+  enableUndo: boolean;
+  showBestsellerBadges: boolean;
+  gridColumns: number;
+  defaultPastries: TDefaultPastry[];
 };
 
 export const defaultConfigurablesData: TDefaultConfigurableData = {
-  appName: "FILL_APP_NAME_HERE",
+  appName: "Crumb",
+  tagline: "Tap-fast sold-today tracker for your bakery.",
   logoUrl: "FILL_LOGO_URL_HERE",
   brandColor: {
-    primary: "FILL_PRIMARY_COLOR_HERE",
-    secondary: "FILL_SECONDARY_COLOR_HERE",
-    accent: "FILL_ACCENT_COLOR_HERE",
+    primary: "#C8924A",   // Crust Gold
+    secondary: "#8B5A2B", // Toasted Caramel
+    accent: "#FAF3E3",    // Butter Cream
   },
-  // ─────────────────────────────────────────────────────────────────────
-  // Add new field defaults here. See RULES.md §5 for per-type shape.
-  // Required branding fields → use the FILL_X_HERE placeholder pattern.
-  // Optional/typed defaults → real value with a "// fill it here" comment:
-  //
-  //   maxItemsPerPage: 12,                     // fill it here
-  //   enableNotifications: true,               // fill it here
-  //   featuredCategories: [],                  // fill it here
-  //   defaultLanguage: "en",                   // must match enum options
-  //   launchDate: "2025-01-01T00:00:00.000Z",  // ISO-8601
-  //   heroImage: "",                           // resolved URL after upload
-  //   galleryImages: [],                       // array of resolved URLs
-  // ─────────────────────────────────────────────────────────────────────
+  soldTodayHeading: "Sold today",
+  soldTodaySubheading: "Tap a pastry once each time it sells.",
+  insightHeading: "Today's bestsellers",
+  insightSubheading: "What's flying off the shelf right now.",
+  loginWelcome: "Welcome back to the counter.",
+  enableUndo: true,
+  showBestsellerBadges: true,
+  gridColumns: 3,
+  defaultPastries: [
+    { name: "Butter Croissant",     photoUrl: "", emoji: "🥐" },
+    { name: "Pain au Chocolat",     photoUrl: "", emoji: "🍫" },
+    { name: "Sourdough Loaf",       photoUrl: "", emoji: "🍞" },
+    { name: "Cinnamon Roll",        photoUrl: "", emoji: "🥯" },
+    { name: "Blueberry Muffin",     photoUrl: "", emoji: "🫐" },
+    { name: "Almond Danish",        photoUrl: "", emoji: "🥮" },
+  ],
 };
